@@ -14,6 +14,10 @@ locals {
 
 #Common Variables
 
+variable "env" {
+  type = string
+}
+
 variable "account" {
   description = "This is the account where your infrastructure example - dpp, dpnp, dps"
   default     = "dpnp"
@@ -43,13 +47,13 @@ variable "tags" {
 
 variable "ami" {
   type    = string
-  default = "ami-04b762b4289fba92b"
+  default = "ami-083ac7c7ecf9bb9b0"
   // Amazon Linux 2
 }
 
 variable "instance_type" {
   type    = string
-  default = "m4.xlarge"
+  default = "r5.xlarge"
 }
 
 # variable "ingress" {
@@ -59,14 +63,24 @@ variable "instance_type" {
 
 variable "whitelist_cidr" {
   type = list(string)
+  default = [
+
+  // Global Protect VPN
+  "10.112.0.0/21",
+  "10.117.0.0/16",
+
+  // OnPrem
+  "10.4.0.0/16", // Redwood City 505
+  "10.12.0.0/16" // Redwood City 220
+]
 }
 
 variable "root_vol_type" {
   type    = string
-  default = "gp2"
+  default = "gp3"
 }
 
 variable "root_vol_size" {
   type    = number
-  default = 30
+  default = 1000
 }
