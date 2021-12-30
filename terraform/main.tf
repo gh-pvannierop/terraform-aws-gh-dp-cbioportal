@@ -31,7 +31,6 @@ module "ec2" {
   account                      = var.account 
   ami                          = var.ami
   instance_type                = var.instance_type
-  name                         = var.name
   vpc_id                       = data.aws_ssm_parameter.vpc_id.value
   public_subnet_id             = element(split(",",data.aws_ssm_parameter.public_subnet_ids.value),0)
   #private_subnet_id            = element(split(",",data.aws_ssm_parameter.private_subnet_ids.value),0)
