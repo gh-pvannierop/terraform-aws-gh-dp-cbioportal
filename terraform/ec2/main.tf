@@ -133,7 +133,7 @@ resource "aws_key_pair" "generated_key" {
 }
 
 resource "aws_secretsmanager_secret" "key" {
-  name = "${prefix_path}/ec2/key_pair"
+  name = "${local.prefix_path}/ec2/key_pair"
 }
 
 resource "aws_secretsmanager_secret_version" "key" {

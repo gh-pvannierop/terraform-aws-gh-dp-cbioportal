@@ -17,7 +17,7 @@ data "aws_ssm_parameter" "private_subnet_ids" {
   name = "/${local.prefix_path}/private_subnet_ids"
 }
 
-data "aws_ssm_parameter" "publicsubnet_ids" {
+data "aws_ssm_parameter" "public_subnet_ids" {
   name = "/${local.prefix_path}/public_subnet_ids"
 }
 
