@@ -14,15 +14,15 @@ terraform {
 }
 
 data "aws_ssm_parameter" "private_subnet_ids" {
-  name = "/${local.prefix_path}/private_subnet_ids"
+  name = "/${var.account}/${local.DataProduct}/network/private_subnet_ids"
 }
 
 data "aws_ssm_parameter" "public_subnet_ids" {
-  name = "/${local.prefix_path}/public_subnet_ids"
+  name = "/${var.account}/${local.DataProduct}/network/public_subnet_ids"
 }
 
 data "aws_ssm_parameter" "vpc_id" {
-  name = "/${local.prefix_path}/vpc_id"
+  name = "/${var.account}/${local.DataProduct}/network/vpc_id"
 }
 
 module "ec2" {
