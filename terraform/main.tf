@@ -27,7 +27,7 @@ data "aws_ssm_parameter" "vpc_id" {
 
 module "ec2" {
   source = "./ec2"
-  aws_region                       = var.aws_region
+  aws_region                   = var.aws_region
   account                      = var.account 
   ami                          = var.ami
   instance_type                = var.instance_type

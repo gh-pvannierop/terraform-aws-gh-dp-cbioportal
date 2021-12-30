@@ -13,10 +13,6 @@ locals {
 
 
 #Common Variables
-variable "aws_region" {
-  description = "This is the cloud hosting region where your infrastructure will be deployed."
-  default     = "us-west-2"
-}
 
 variable "account" {
   description = "This is the account where your infrastructure example - dpp, dpnp, dps"
