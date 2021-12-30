@@ -23,6 +23,11 @@ variable "account" {
   default     = "dpnp"
 }
 
+variable "aws_region" {
+  type = string
+  default = "us-west-2"
+}
+
 variable "tags" {
   description = "Optional map of tags to set on resources."
   type        = map

@@ -1,7 +1,7 @@
 #Terraform Configuraiton
 
 provider "aws" {
-  region = "us-west-2"
+  region = var.aws_region
 }
 
 # Configure the GitHub Provider
@@ -26,7 +26,7 @@ data "aws_ssm_parameter" "vpc_id" {
 }
 
 module "ec2" {
-  source = "../../modules/ec2"
+  source = "./ec2"
   aws_region                       = var.aws_region
   account                      = var.account 
   ami                          = var.ami
