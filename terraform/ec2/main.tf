@@ -117,29 +117,29 @@ resource "aws_iam_role_policy_attachment" jenkins_docker_instance_profile_role_p
   policy_arn = data.aws_ssm_parameter.session_manager_policy_arn.value
 }
 
-#Create key pair and store in secret manager
-resource "tls_private_key" "key" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
+# #Create key pair and store in secret manager
+# resource "tls_private_key" "key" {
+#   algorithm = "RSA"
+#   rsa_bits  = 4096
+# }
 
-resource "aws_key_pair" "generated_key" {
-  key_name   = "${local.prefix}-ec2-key"
-  public_key = tls_private_key.key.public_key_openssh
+# resource "aws_key_pair" "generated_key" {
+#   key_name   = "${local.prefix}-ec2-key"
+#   public_key = tls_private_key.key.public_key_openssh
 
-  tags = merge(local.tags, {
-      Name = "${local.prefix}-ec2-key_pair"
-    })
-}
+#   tags = merge(local.tags, {
+#       Name = "${local.prefix}-ec2-key_pair"
+#     })
+# }
 
-resource "aws_secretsmanager_secret" "key" {
-  name = "${local.prefix_path}/ec2/key_pair"
-}
+# resource "aws_secretsmanager_secret" "key" {
+#   name = "${local.prefix_path}/ec2/key_pair"
+# }
 
-resource "aws_secretsmanager_secret_version" "key" {
-  secret_id     = aws_secretsmanager_secret.key.id
-  secret_string = tls_private_key.key.private_key_pem
-}
+# resource "aws_secretsmanager_secret_version" "key" {
+#   secret_id     = aws_secretsmanager_secret.key.id
+#   secret_string = tls_private_key.key.private_key_pem
+# }
 
 resource "aws_instance" "ec2" {
   ami                         = var.ami
@@ -152,7 +152,7 @@ resource "aws_instance" "ec2" {
   iam_instance_profile       = aws_iam_instance_profile.profile.name
   #private_ip                 = var.private_ip
 
-  key_name                   = aws_key_pair.generated_key.key_name
+  #key_name                   = aws_key_pair.generated_key.key_name
 
   root_block_device {
     volume_type = var.root_vol_type
