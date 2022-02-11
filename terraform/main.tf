@@ -2,6 +2,7 @@
 
 provider "aws" {
   region = var.aws_region
+  version = "~> 3.74.1"   
 }
 
 # Configure the GitHub Provider
