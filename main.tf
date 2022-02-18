@@ -44,7 +44,7 @@ resource "aws_iam_instance_profile" "cbio_instance_profile" {
 
 resource "aws_security_group" "ec2_security_group" {
   name = "${local.prefix}-sg"
-  vpc_id = data.aws_ssm_parameter.vpc_id
+  vpc_id = nonsensitive(data.aws_ssm_parameter.vpc_id.value)
 
   ingress {
     from_port   = 80
