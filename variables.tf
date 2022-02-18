@@ -18,12 +18,12 @@ locals {
   DataProduct = "platform"
   Component   = "cbioportal"
   tags = {
-    Environment     = var.env
+    Environment     = var.account
     DataProduct     = local.DataProduct
     Component       = local.Component
   }
-  prefix      = "${var.account}-${local.DataProduct}-${local.Component}"
-  prefix_path = "${var.account}/${local.DataProduct}/${local.Component}"
+  prefix      = "${var.env}-${local.DataProduct}-${local.Component}"
+  prefix_path = "${var.env}/${local.DataProduct}/${local.Component}"
   route53_domain_name = "data.guardanthealth.com"
 }
 

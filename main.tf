@@ -97,6 +97,6 @@ resource "aws_instance" "cbioportal_sandbox" {
     volume_size = var.root_vol_size
   }
   tags = merge(local.tags,{
-    Name        = "${local.prefix}-cbio-portal"
+    Name        = "${local.prefix}-sandbox"
   })
 }
