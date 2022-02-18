@@ -6,9 +6,6 @@ pipeline {
             inheritFrom 'builds'
         }
     }
-    options {
-        ansiColor('xterm')
-    }
     parameters{
         choice(
                 name: 'TARGET_WORKSPACE',
