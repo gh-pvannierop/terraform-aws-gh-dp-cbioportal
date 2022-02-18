@@ -9,6 +9,11 @@ variable "account" {
   default     = "dpnp"
 }
 
+variable "env" {
+  description = "This is the workspace where we will be creating the resource."
+  default     = "dev"
+}
+
 locals {
   DataProduct = "platform"
   Component   = "cbioportal"
