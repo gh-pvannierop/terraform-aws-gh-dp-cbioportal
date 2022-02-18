@@ -21,35 +21,29 @@ pipeline {
     stages {
         stage("Initialize Workspace"){
             steps{
-                dir('terraform'){
-                    initWorkspace(
-                            repo:"${env.GIT_URL}",
-                            account:"${env.ACCOUNT_NAME}",
-                            env: "${params.TARGET_WORKSPACE}"
-                    )
-                }
+                initWorkspace(
+                        repo:"${env.GIT_URL}",
+                        account:"${env.ACCOUNT_NAME}",
+                        env: "${params.TARGET_WORKSPACE}"
+                )
             }
         }
         stage("Validate & Plan") {
             steps {
-                dir('terraform') {
-                    validateAndPlan(
-                            account:"${env.ACCOUNT_NAME}",
-                            env: "${params.TARGET_WORKSPACE}"
-                    )
-                }
+                validateAndPlan(
+                        account:"${env.ACCOUNT_NAME}",
+                        env: "${params.TARGET_WORKSPACE}"
+                )
             }
         }
         stage("Apply") {
             steps {
-                dir('terraform') {
-                    terraformApply(
-                            account:"${env.ACCOUNT_NAME}",
-                            apply: "${params.APPLY}",
-                            branch: env.BRANCH_NAME,
-                            env: "${params.TARGET_WORKSPACE}"
-                    )
-                }
+                terraformApply(
+                        account:"${env.ACCOUNT_NAME}",
+                        apply: "${params.APPLY}",
+                        branch: env.BRANCH_NAME,
+                        env: "${params.TARGET_WORKSPACE}"
+                )
             }
         }
     }
