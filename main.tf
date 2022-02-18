@@ -11,12 +11,12 @@ terraform {
   }
 }
 
-resource "aws_iam_role_policy_attachment" jenkins_docker_instance_profile_role_policy_attachment {
+resource "aws_iam_role_policy_attachment" cbio_portal_profile_role_policy_attachment {
   role       = aws_iam_role.cbio-ec2-role.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
-resource "aws_iam_role_policy_attachment" jenkins_docker_instance_profile_role_policy_attachment2 {
+resource "aws_iam_role_policy_attachment" cbio_portal_rofile_role_policy_attachment2 {
   role       = aws_iam_role.cbio-ec2-role.name
   policy_arn = data.aws_ssm_parameter.session_manager_policy_arn.value
 }
@@ -85,7 +85,7 @@ resource "aws_security_group" "ec2_security_group" {
   })
 }
 
-resource "aws_instance" "docker-daemon-server" {
+resource "aws_instance" "cbioportal_sandbox" {
   ami = "ami-083ac7c7ecf9bb9b0"
   instance_type = var.instance_type
   user_data = "${file("pre_install.sh")}"
@@ -97,6 +97,6 @@ resource "aws_instance" "docker-daemon-server" {
     volume_size = var.root_vol_size
   }
   tags = merge(local.tags,{
-    Name        = "${local.prefix}-docker-daemon"
+    Name        = "${local.prefix}-cbio-portal"
   })
 }

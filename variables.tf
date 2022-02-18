@@ -18,7 +18,7 @@ locals {
   DataProduct = "platform"
   Component   = "cbioportal"
   tags = {
-    Environment     = var.account
+    Environment     = var.env
     DataProduct     = local.DataProduct
     Component       = local.Component
   }
