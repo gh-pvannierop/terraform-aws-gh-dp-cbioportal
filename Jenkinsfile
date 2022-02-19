@@ -48,7 +48,7 @@ pipeline {
             }
         }
         stage("Terraform destroy") {
-            when { expression {(params.APPLY == true && params.DESTROY == true) } }
+            when { expression {(params.DESTROY == true) } }
             steps {
                 sh "terraform destroy -auto-approve"
             }
