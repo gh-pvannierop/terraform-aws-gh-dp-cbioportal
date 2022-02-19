@@ -27,7 +27,7 @@ data "aws_ssm_parameter" "vpc_id" {
 }
 
 module "ec2" {
-  source = "./ec2"
+  source                       = "./ec2"
   aws_region                   = var.aws_region
   account                      = var.account 
   ami                          = var.ami
@@ -39,4 +39,5 @@ module "ec2" {
   root_vol_size                = var.root_vol_size
   root_vol_type                = var.root_vol_type
   whitelist_cidr               = var.whitelist_cidr
+  env                          = var.env
 }
