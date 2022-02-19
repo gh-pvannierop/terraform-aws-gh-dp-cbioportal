@@ -13,6 +13,7 @@ pipeline {
                 description: 'Infra deployment workspace'
         )
         booleanParam(name: 'APPLY', defaultValue: false, description: 'The infra will be applied to the chosen workspace.')
+        booleanParam(name: 'DESTROY', defaultValue: false, description: 'The infra will be destroyed in the chosen workspace.')
     }
     environment {
         REGION = 'us-west-2'
@@ -44,6 +45,12 @@ pipeline {
                         branch: env.BRANCH_NAME,
                         env: "${params.TARGET_WORKSPACE}"
                 )
+            }
+        }
+        stage("Terraform destroy") {
+            when { expression {(params.APPLY == true && params.DESTROY == true) } }
+            steps {
+                sh "terraform destroy -auto-approve"
             }
         }
     }
