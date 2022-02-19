@@ -11,6 +11,10 @@ locals {
   route53_domain_name = "data.guardanthealth.com"
 }
 
+variable "env" {
+  type = string
+}
+
 variable "account" {
   type = string
 }
