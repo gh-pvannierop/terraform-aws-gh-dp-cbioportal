@@ -46,30 +46,6 @@ resource "aws_security_group" "ec2_security_group" {
   name = "${local.prefix}-sg"
   vpc_id = nonsensitive(data.aws_ssm_parameter.vpc_id.value)
 
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "TCP"
-    description = "Allow HTTP"
-    cidr_blocks   = var.whitelist_cidr
-  }
-
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "TCP"
-    description = "Allow HTTPS"
-    cidr_blocks   = var.whitelist_cidr
-  }
-
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "ICMP"
-    description = "Allow Ping from anywhere"
-    cidr_blocks   = var.whitelist_cidr
-  }
-
   egress {
     from_port = 0
     to_port   = 0
@@ -97,6 +73,6 @@ resource "aws_instance" "cbioportal_sandbox" {
     volume_size = var.root_vol_size
   }
   tags = merge(local.tags,{
-    Name        = "${local.prefix}-sandbox"
+    Name        = "${local.prefix}"
   })
 }

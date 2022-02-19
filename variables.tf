@@ -27,20 +27,6 @@ locals {
   route53_domain_name = "data.guardanthealth.com"
 }
 
-variable "whitelist_cidr" {
-  type = list(string)
-  default = [
-
-    // Global Protect VPN
-    "10.112.0.0/21",
-    "10.117.0.0/16",
-
-    // OnPrem
-    "10.4.0.0/16", // Redwood City 505
-    "10.12.0.0/16" // Redwood City 220
-  ]
-}
-
 variable "instance_type" {
   type    = string
   default = "r5.xlarge"
