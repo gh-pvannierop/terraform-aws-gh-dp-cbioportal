@@ -78,12 +78,23 @@ resource "aws_lb" cbio_alb {
   })
 }
 
-resource "aws_lb_listener" alb_listner {
+resource "aws_lb_listener" alb_listner_443 {
   load_balancer_arn = aws_lb.cbio_alb.arn
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-FS-1-2-Res-2020-10"
   certificate_arn   = nonsensitive(data.aws_ssm_parameter.certificate_arn.value)
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb_target.arn
+  }
+}
+
+resource "aws_lb_listener" alb_listner_80 {
+  load_balancer_arn = aws_lb.cbio_alb.arn
+  port              = 80
+  protocol          = "HTTP"
 
   default_action {
     type             = "forward"
