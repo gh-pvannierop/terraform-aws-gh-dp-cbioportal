@@ -1,3 +1,16 @@
+locals {
+  github_ip_ranges_ipv4_cidr = [
+  for cidr in data.github_ip_ranges.github_ip_ranges.hooks : cidr
+  if replace(cidr, ":", "") == cidr
+  ]
+  github_ip_ranges_ipv6_cidr = [
+  for cidr in data.github_ip_ranges.github_ip_ranges.hooks : cidr
+  if replace(cidr, ":", "") != cidr
+  ]
+}
+
+data "github_ip_ranges" "github_ip_ranges" {}
+
 data aws_ssm_parameter "session_manager_policy_arn" {
   name = "/${var.account}/security/session-manager/policy_arn"
 }

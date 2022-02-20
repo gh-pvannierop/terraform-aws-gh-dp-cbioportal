@@ -13,8 +13,8 @@ resource "aws_security_group_rule" "alb_ingress_443" {
   protocol = "tcp"
   from_port = 443
   to_port = 443
-  #cidr_blocks = local.github_ip_ranges_ipv4_cidr
-  #ipv6_cidr_blocks = local.github_ip_ranges_ipv6_cidr
+  cidr_blocks = local.github_ip_ranges_ipv4_cidr
+  ipv6_cidr_blocks = local.github_ip_ranges_ipv6_cidr
   description = "Open CBIO Port for specific address"
   security_group_id = aws_security_group.alb_security_group.id
 }
