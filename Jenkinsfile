@@ -2,9 +2,7 @@
 
 pipeline {
     agent {
-        ecs {
-            inheritFrom 'builds'
-        }
+        label 'builds'
     }
     parameters{
         choice(
